@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
-public class countingWordsSequentially {
+public class countingWords {
 
     public HashMap<String,Integer> countWords(List<String> lines) throws IOException {
         HashMap<String,Integer> wordCount = new HashMap<>();
