@@ -28,8 +28,18 @@ public class ExecutorWordCounter {
         executor.shutdown();
 
         // Convert LongAdder map → normal Map<String,Integer>
-        Map<String,Integer> finalMap = new HashMap<>();
-        sharedMap.forEach((k,v) -> finalMap.put(k, v.intValue()));
+//        Map<String,Integer> finalMap = new HashMap<>();
+//        sharedMap.forEach((k,v) -> finalMap.put(k, v.intValue()));
+//
+
+        Map<String,Integer> finalMap = sharedMap.entrySet()
+                .stream()
+                .sorted((e1, e2) -> Integer.compare(e2.getValue().intValue(), e1.getValue().intValue())) // sort by value descending
+                .collect(
+                        LinkedHashMap::new,  // supplier (insertion order preserved)
+                        (m, e) -> m.put(e.getKey(), e.getValue().intValue()), // accumulator
+                        Map::putAll // combiner
+                );
 
         return finalMap;
     }

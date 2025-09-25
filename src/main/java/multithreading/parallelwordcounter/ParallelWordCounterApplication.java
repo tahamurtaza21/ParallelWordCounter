@@ -16,7 +16,7 @@ public class ParallelWordCounterApplication {
 //        SpringApplication.run(ParallelWordCOunterApplication.class, args);
 
 
-        List<String> lines = readFiles.readLinesFromFile("src/main/resources/bigfile.txt");
+        List<String> lines = readFiles.readLinesFromFile("src/main/resources/random_big_file.txt");
 
         // Doing this sequentially
 

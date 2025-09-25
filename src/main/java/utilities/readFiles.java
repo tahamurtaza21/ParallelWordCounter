@@ -11,6 +11,6 @@ public class readFiles {
 
     public static List<String> readLinesFromFile(String filePath) throws IOException {
         Path path = Paths.get(filePath);
-        return Files.readAllLines(path, StandardCharsets.UTF_16LE);
+        return Files.readAllLines(path, StandardCharsets.UTF_8);
     }
 }
