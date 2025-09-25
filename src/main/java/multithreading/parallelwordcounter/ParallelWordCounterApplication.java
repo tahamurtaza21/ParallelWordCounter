@@ -23,8 +23,7 @@ public class ParallelWordCounterApplication {
 //        List<String> lines = null;
 
 //        try {
-//            countingWordsSequentially counter = new countingWordsSequentially();
-//            lines = counter.readLinesFromFile("src/main/resources/bigfile.txt");
+//            countingWords counter = new countingWords();
 //            System.out.println(counter.countWords(lines));
 //        }
 //        catch (Exception e) {
@@ -77,10 +76,12 @@ public class ParallelWordCounterApplication {
 //        }
 
         try {
+//             Normal Map
             ExecutorWordCounter executorCounter = new ExecutorWordCounter();
             Map<String,Integer> result = executorCounter.useExecutor(lines);
 
             System.out.println(result);
+
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -7,6 +7,8 @@ public class ExecutorWordCounter {
 
     private final countingWords counter = new countingWords();
 
+    static final HashMap<String,Integer> sharedMap = new HashMap<>();
+
     public Map<String,Integer> useExecutor(List<String> lines) throws Exception {
         // Split into 2 halves
         List<String> part1 = lines.subList(0, lines.size() / 2);
