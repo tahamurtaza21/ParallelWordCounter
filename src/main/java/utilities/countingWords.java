@@ -3,12 +3,15 @@ package utilities;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
-import static utilities.ExecutorWordCounter.sharedMap;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.LongAdder;
 
 public class countingWords {
 
-    public HashMap<String,Integer> countWords(List<String> lines) throws IOException {
-//        HashMap<String,Integer> wordCount = new HashMap<>();
+    public ConcurrentHashMap<String,LongAdder> countWords(List<String> lines, ConcurrentHashMap<String,LongAdder> sharedMap) throws IOException {
+
+        // uses the same shared map that executor word counter provided
+
         for(String line : lines)    // gets each line
         {
             String[] words = line.split("\\W+");  // splits it into words
@@ -16,7 +19,7 @@ public class countingWords {
                 if(!word.isEmpty())
                 {
                     word = word.toLowerCase(); // normalizes it
-                    sharedMap.put(word,sharedMap.getOrDefault(word,0)+1); //
+                    sharedMap.computeIfAbsent(word, w -> new LongAdder()).increment();
                 }
             }
         }
